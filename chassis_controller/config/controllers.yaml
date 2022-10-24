@@ -1,0 +1,10 @@
+controllers:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+
+  front_left_wheel_controller:
+    type: chassis_controller/ChassisController
+    joint: front_left_wheel_joint
+    fl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
