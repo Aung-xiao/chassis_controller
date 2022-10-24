@@ -6,5 +6,8 @@
           args="load
           controllers/joint_state_controller
           controllers/front_left_wheel_controller
+          controllers/front_right_wheel_controller
+          controllers/back_left_wheel_controller
+          controllers/back_right_wheel_controller
 "/>
 </launch>

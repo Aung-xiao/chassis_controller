@@ -32,7 +32,7 @@ namespace chassis_controller {
     private:
         int state_{};
         ros::Time current_time_, last_time_;
-        hardware_interface::JointHandle front_left_wheel_joint_;
+        hardware_interface::JointHandle front_left_wheel_joint_,front_right_wheel_joint_,back_left_wheel_joint_,back_right_wheel_joint_;
 
         //cmd_vel
         ros::Subscriber cmd_vel_sub_;
@@ -40,7 +40,7 @@ namespace chassis_controller {
         void cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg);
 
         //pid
-        control_toolbox::Pid flPid;
+        control_toolbox::Pid flPid,frPid,blPid,brPid;
         };
 
 }
