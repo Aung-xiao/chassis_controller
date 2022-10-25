@@ -67,6 +67,7 @@ namespace chassis_controller {
     }
 
     void ChassisController::kinematicComputer(){
+        //这里进行运动学解算，懒得写了
         fl_vel=cmd_vel_.linear.x;
         fr_vel=cmd_vel_.linear.x;
         bl_vel=cmd_vel_.linear.x;
