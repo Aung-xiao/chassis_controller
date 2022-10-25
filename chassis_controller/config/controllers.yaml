@@ -4,22 +4,33 @@ controllers:
     publish_rate: 50
 
 
-  front_left_wheel_controller:
+  wheel_controller:
     type: chassis_controller/ChassisController
-    joint: front_left_wheel_joint
     fl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
-
-  front_right_wheel_controller:
-    type: chassis_controller/ChassisController
-    joint: front_right_wheel_joint
     fr_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
-
-  back_left_wheel_controller:
-    type: chassis_controller/ChassisController
-    joint: back_left_wheel_joint
     bl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
-
-  back_right_wheel_controller:
-    type: chassis_controller/ChassisController
-    joint: back_right_wheel_joint
     br_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+
+
+#  fl_velocity_controller:
+#    type: effort_controllers/JointVelocityController
+#    joint: front_left_wheel_joint
+#    pid: { p: 0.8, i: 0, d: 0.0, i_max: 0.0, i_min: 0.0, antiwindup: true }
+
+
+
+#    front_left_wheel_controller:
+#      joint: front_left_wheel_joint
+#      fl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+#
+#    front_right_wheel_controller:
+#      joint: front_right_wheel_joint
+#      fr_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+#
+#    back_left_wheel_controller:
+#      joint: back_left_wheel_joint
+#      bl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+#
+#    back_right_wheel_controller:
+#      joint: back_right_wheel_joint
+#      br_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }

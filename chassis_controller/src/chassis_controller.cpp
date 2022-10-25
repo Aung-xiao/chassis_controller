@@ -12,8 +12,8 @@ namespace chassis_controller {
     bool ChassisController::init(hardware_interface::EffortJointInterface* hw,
              ros::NodeHandle &root_nh, ros::NodeHandle &controller_nh){
         //get_handle
-        front_left_wheel_joint_ = hw->getHandle("front_left_wheel_joint");
         front_right_wheel_joint_ = hw->getHandle("front_right_wheel_joint");
+        front_left_wheel_joint_ = hw->getHandle("front_left_wheel_joint");
         back_left_wheel_joint_ = hw->getHandle("back_left_wheel_joint");
         back_right_wheel_joint_ = hw->getHandle("back_right_wheel_joint");
 
@@ -61,11 +61,11 @@ namespace chassis_controller {
         double fl_pid_error =-(front_left_wheel_joint_.getVelocity()-cmd_vel_.linear.x);
         flPid.computeCommand(fl_pid_error, period);
         double fr_pid_error =-(front_right_wheel_joint_.getVelocity()-cmd_vel_.linear.x);
-        flPid.computeCommand(fr_pid_error, period);
+        frPid.computeCommand(fr_pid_error, period);
         double bl_pid_error =-(back_left_wheel_joint_.getVelocity()-cmd_vel_.linear.x);
-        flPid.computeCommand(bl_pid_error, period);
+        blPid.computeCommand(bl_pid_error, period);
         double br_pid_error =-(back_right_wheel_joint_.getVelocity()-cmd_vel_.linear.x);
-        flPid.computeCommand(br_pid_error, period);
+        brPid.computeCommand(br_pid_error, period);
     }
 
     void ChassisController::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg_p){
