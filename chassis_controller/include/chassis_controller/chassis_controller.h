@@ -29,6 +29,8 @@ namespace chassis_controller {
 
         void pidComputer(const ros::Time &time, const ros::Duration &period) ;
 
+        void kinematicComputer();
+
     private:
         int state_{};
         ros::Time current_time_, last_time_;
@@ -41,6 +43,9 @@ namespace chassis_controller {
 
         //pid
         control_toolbox::Pid flPid,frPid,blPid,brPid;
+
+        //kinematic
+        double fl_vel,fr_vel,bl_vel,br_vel;
         };
 
 }
