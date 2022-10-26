@@ -29,7 +29,7 @@ namespace chassis_controller {
 
         void pidComputer(const ros::Time &time, const ros::Duration &period) ;
 
-        void kinematicComputer();
+        void kinematicComputer(double &fl_vel,double &fr_vel,double &bl_vel,double &br_vel);
 
     private:
         int state_{};

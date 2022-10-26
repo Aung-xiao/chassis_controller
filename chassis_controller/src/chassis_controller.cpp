@@ -45,7 +45,7 @@ namespace chassis_controller {
     }
 
     void ChassisController::update(const ros::Time &time, const ros::Duration &period) {
-        kinematicComputer();
+        kinematicComputer(fl_vel,fr_vel,bl_vel,br_vel);
         pidComputer(time, period);
     }
 
@@ -66,8 +66,8 @@ namespace chassis_controller {
         back_right_wheel_joint_.setCommand(brPid.getCurrentCmd());
     }
 
-    void ChassisController::kinematicComputer(){
-        //这里进行运动学解算，懒得写了
+    void ChassisController::kinematicComputer(double &fl_vel,double &fr_vel,double &bl_vel,double &br_vel){
+        //这里进行运动学解算
         fl_vel=cmd_vel_.linear.x;
         fr_vel=cmd_vel_.linear.x;
         bl_vel=cmd_vel_.linear.x;
