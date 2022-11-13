@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find rm_description)/launch/hero.launch"/>
+    <include file="$(find chassis_controller)/launch/load_controllers.launch"/>
+</launch>

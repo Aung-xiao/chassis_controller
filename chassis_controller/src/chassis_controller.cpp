@@ -18,7 +18,7 @@ namespace chassis_controller {
         back_right_wheel_joint_ = hw->getHandle("back_right_wheel_joint");
 
         //vel_sub
-        cmd_vel_sub_ = root_nh.subscribe<geometry_msgs::Twist>("cmd_vel", 1, &ChassisController::cmdVelCallback, this);
+        cmd_vel_sub_ = root_nh.subscribe<geometry_msgs::Twist>("/chassis/cmd_vel", 1, &ChassisController::cmdVelCallback, this);
 
         //get_pid
         if (!flPid.init(ros::NodeHandle(controller_nh, "fl_pid_follow")))
@@ -68,10 +68,10 @@ namespace chassis_controller {
 
     void ChassisController::kinematicComputer(double &fl_vel,double &fr_vel,double &bl_vel,double &br_vel){
         //这里进行运动学解算
-        fl_vel=cmd_vel_.linear.x;
-        fr_vel=cmd_vel_.linear.x;
-        bl_vel=cmd_vel_.linear.x;
-        br_vel=cmd_vel_.linear.x;
+        fl_vel=cmd_vel_.linear.x*10;
+        fr_vel=cmd_vel_.linear.x*10;
+        bl_vel=cmd_vel_.linear.x*10;
+        br_vel=cmd_vel_.linear.x*10;
     }
 
     void ChassisController::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg_p){

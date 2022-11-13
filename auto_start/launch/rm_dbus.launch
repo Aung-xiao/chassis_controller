@@ -1,0 +1,5 @@
+<launch>
+    <rosparam file="$(find rm_dbus)/config/dbus.yaml" command="load"/>
+    <node name="rm_dbus" pkg="rm_dbus" type="rm_dbus" respawn="false"/>
+    <node name="ros_manual" pkg="ros_manual" type="ros_manual" respawn="false"/>
+</launch>
