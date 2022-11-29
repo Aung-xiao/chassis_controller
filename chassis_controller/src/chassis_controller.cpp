@@ -67,11 +67,11 @@ namespace chassis_controller {
     }
 
     void ChassisController::kinematicComputer(double &fl_vel,double &fr_vel,double &bl_vel,double &br_vel){
-        //这里进行运动学解算
-        fl_vel=cmd_vel_.linear.x*10;
-        fr_vel=cmd_vel_.linear.x*10;
-        bl_vel=cmd_vel_.linear.x*10;
-        br_vel=cmd_vel_.linear.x*10;
+        //这里进行运动学解算;这里有问题，实际速度慢了一倍
+        fr_vel=(cmd_vel_.linear.y+cmd_vel_.linear.x+cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
+        fl_vel=(cmd_vel_.linear.y-cmd_vel_.linear.x-cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
+        bl_vel=(cmd_vel_.linear.y+cmd_vel_.linear.x-cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
+        br_vel=(cmd_vel_.linear.y-cmd_vel_.linear.x+cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
     }
 
     void ChassisController::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg_p){

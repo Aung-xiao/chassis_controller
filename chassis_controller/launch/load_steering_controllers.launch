@@ -1,0 +1,10 @@
+<launch>
+    <rosparam file="$(find chassis_controller)/config/steering_controllers.yaml" command="load"/>
+    <!-- load the controllers -->
+    <node name="controller_loader" pkg="controller_manager" type="controller_manager"
+          respawn="false" output="screen"
+          args="load
+          controllers/joint_state_controller
+          controllers/wheel_controller
+"/>
+</launch>

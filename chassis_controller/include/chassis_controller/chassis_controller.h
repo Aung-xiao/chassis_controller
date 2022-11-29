@@ -43,7 +43,9 @@ namespace chassis_controller {
 
         //pid
         control_toolbox::Pid flPid,frPid,blPid,brPid;
-
+        double wheel_track=0.500;
+        double wheel_base=0.475;
+        double wheel_radius=0.07625;
         //kinematic
         double fl_vel,fr_vel,bl_vel,br_vel;
         };

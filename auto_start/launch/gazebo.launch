@@ -1,4 +1,12 @@
 <launch>
-    <include file="$(find rm_description)/launch/hero.launch"/>
-    <include file="$(find chassis_controller)/launch/load_controllers.launch"/>
+    <arg name="robot" default="true"/>
+    <group if="$(arg robot)">
+        <include file="$(find rm_description)/launch/hero.launch"/>
+        <include file="$(find chassis_controller)/launch/load_controllers.launch"/>
+    </group>
+    <group unless="$(arg robot)">
+        <include file="$(find rm_description)/launch/engineer.launch"/>
+        <include file="$(find chassis_controller)/launch/load_steering_controllers.launch"/>
+    </group>
+    <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
 </launch>

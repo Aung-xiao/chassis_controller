@@ -1,0 +1,9 @@
+<library path="lib/libsteering_chassis_controller">
+
+    <class name="steering_chassis_controller/SteeringChassisController"
+           type="steering_chassis_controller::SteeringChassisController"
+           base_class_type="controller_interface::ControllerBase">
+
+    </class>
+
+</library>

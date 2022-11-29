@@ -35,3 +35,11 @@ add_library(chassis_controller
 target_link_libraries(chassis_controller
         ${catkin_LIBRARIES}
         )
+
+add_library(steering_chassis_controller
+        include/chassis_controller/steering_chassis_controller.h
+        src/steering_chassis_controller.cpp
+        )
+target_link_libraries(steering_chassis_controller
+        ${catkin_LIBRARIES}
+        )
