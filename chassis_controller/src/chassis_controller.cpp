@@ -45,15 +45,15 @@ namespace chassis_controller {
     }
 
     void ChassisController::update(const ros::Time &time, const ros::Duration &period) {
-        kinematicComputer(fl_vel,fr_vel,bl_vel,br_vel);
+        kinematicComputer(fl_vel_,fr_vel_,bl_vel_,br_vel_);
         pidComputer(time, period);
     }
 
     void ChassisController::pidComputer(const ros::Time &time, const ros::Duration &period){
-        double fl_pid_error =(fl_vel-front_left_wheel_joint_.getVelocity());
-        double fr_pid_error =(fr_vel-front_right_wheel_joint_.getVelocity());
-        double bl_pid_error =(bl_vel-back_left_wheel_joint_.getVelocity());
-        double br_pid_error =(br_vel-back_right_wheel_joint_.getVelocity());
+        double fl_pid_error =(fl_vel_-front_left_wheel_joint_.getVelocity());
+        double fr_pid_error =(fr_vel_-front_right_wheel_joint_.getVelocity());
+        double bl_pid_error =(bl_vel_-back_left_wheel_joint_.getVelocity());
+        double br_pid_error =(br_vel_-back_right_wheel_joint_.getVelocity());
 
         flPid.computeCommand(fl_pid_error, period);
         frPid.computeCommand(fr_pid_error, period);
@@ -72,6 +72,7 @@ namespace chassis_controller {
         fl_vel=(cmd_vel_.linear.y-cmd_vel_.linear.x-cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
         bl_vel=(cmd_vel_.linear.y+cmd_vel_.linear.x-cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
         br_vel=(cmd_vel_.linear.y-cmd_vel_.linear.x+cmd_vel_.angular.z*(wheel_base+wheel_track)/2)/wheel_radius;
+
     }
 
     void ChassisController::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& msg_p){

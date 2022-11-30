@@ -8,5 +8,5 @@
         <include file="$(find rm_description)/launch/engineer.launch"/>
         <include file="$(find chassis_controller)/launch/load_steering_controllers.launch"/>
     </group>
-    <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
+<!--    <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />-->
 </launch>

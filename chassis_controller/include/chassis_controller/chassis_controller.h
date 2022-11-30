@@ -47,7 +47,7 @@ namespace chassis_controller {
         double wheel_base=0.475;
         double wheel_radius=0.07625;
         //kinematic
-        double fl_vel,fr_vel,bl_vel,br_vel;
+        double fl_vel_,fr_vel_,bl_vel_,br_vel_;
         };
 
 }

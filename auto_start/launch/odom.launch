@@ -1,0 +1,5 @@
+<launch>
+    <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
+    <node name="odom" pkg="ros_navigation" type="basic_odom" />
+    <node name="rviz" pkg="rviz" type="rviz" />
+</launch>

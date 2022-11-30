@@ -6,10 +6,10 @@ controllers:
 
   wheel_controller:
     type: chassis_controller/ChassisController
-    fl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
-    fr_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
-    bl_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
-    br_pid_follow: { p: 61, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+    fl_pid_follow: { p: 62, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+    fr_pid_follow: { p: 62, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+    bl_pid_follow: { p: 62, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
+    br_pid_follow: { p: 62, i: 0, d: 0, i_max: 0.0, i_min: 0.0, antiwindup: true, publish_state: true }
 
 
 #  fl_velocity_controller:

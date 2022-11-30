@@ -8,14 +8,18 @@
 #include <sensor_msgs/JointState.h>
 #include "cmath"
 
+double joint_vel[4];
 double lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel;
 void JointStateCallback(const sensor_msgs::JointState::ConstPtr &joint_state){
-    lf_joint_vel=joint_state->velocity[0];
-    lb_joint_vel=joint_state->velocity[1];
-    rf_joint_vel=joint_state->velocity[2];
-    rb_joint_vel=joint_state->velocity[3];
-    ROS_INFO("xxxxxx lf_joint_vel:%f,lb_joint_vel:%f,rf_joint_vel:%f,rb_joint_vel:%f",lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel);
-
+    for(int i=0;i<=3;i++){
+        if(joint_state->velocity[i]<=0.5) joint_vel[i]=0.0;
+        joint_vel[i]=joint_state->velocity[i];
+    }
+    lf_joint_vel=joint_vel[2];
+    lb_joint_vel=joint_vel[0];
+    rf_joint_vel=joint_vel[3];
+    rb_joint_vel=joint_vel[1];
+    ROS_INFO("left_front：%f,left_back:%f,right_front:%f,right_back:%f",lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel);
 }
 
 
@@ -45,9 +49,9 @@ int main(int argc, char** argv){
 
         ros::spinOnce();               // check for incoming messages
         current_time = ros::Time::now();
-        vx = ((rb_joint_vel-rf_joint_vel)/2)*wheel_radius;
-        vy = ((lf_joint_vel+rf_joint_vel)/2)*wheel_radius;
-        vth = ((rb_joint_vel-lf_joint_vel)/((0.475+0.5)))*wheel_radius;
+        vy = ((lb_joint_vel-lf_joint_vel)/2)*wheel_radius;
+        vx = ((rf_joint_vel+lf_joint_vel)/2)*wheel_radius;
+        vth = ((rf_joint_vel-lb_joint_vel)/((0.475+0.5)))*wheel_radius;
         ROS_INFO("vx:%f,vy:%f,vth:%f",vx,vy,vth);
 
         double delta_x = vx;
