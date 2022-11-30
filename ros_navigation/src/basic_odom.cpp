@@ -41,8 +41,6 @@ int main(int argc, char** argv){
     double wheel_radius=0.07625;
 
     ros::Time current_time, last_time;
-    current_time = ros::Time::now();
-    last_time = ros::Time::now();
 
     ros::Rate r(1);
     while(n.ok()){
@@ -98,7 +96,6 @@ int main(int argc, char** argv){
 
         //publish the message
         odom_pub.publish(odom);
-
         last_time = current_time;
         r.sleep();
     }

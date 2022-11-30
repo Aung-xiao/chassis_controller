@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hero">
+
   <xacro:arg name="load_chassis" default="true"/>
   <xacro:arg name="load_gimbal" default="true"/>
   <xacro:arg name="load_shooter" default="true"/>
   <xacro:arg name="load_gazebo" default="true"/>
   <xacro:arg name="use_rm_gazebo" default="false"/>
   <xacro:arg name="roller_type" default="realistic"/>
+  <xacro:arg name="load_laser" default="true"/>
 
   <xacro:if value="$(arg load_chassis)">
     <xacro:include filename="$(find rm_description)/urdf/hero/chassis.urdf.xacro"/>
@@ -34,6 +36,12 @@
         </plugin>
       </gazebo>
     </xacro:unless>
+  </xacro:if>
+
+  <xacro:if value="$(arg load_laser)">
+    <xacro:include filename="$(find rm_description)/urdf/sensor/head.urdf.xacro" />
+    <xacro:include filename="$(find rm_description)/urdf/sensor/laser.urdf.xacro" />
+    <xacro:include filename="$(find rm_description)/urdf/sensor/laser_sim.urdf.xacro" />
   </xacro:if>
 
 </robot>
