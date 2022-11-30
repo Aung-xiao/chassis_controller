@@ -18,7 +18,7 @@ namespace chassis_controller {
         back_right_wheel_joint_ = hw->getHandle("back_right_wheel_joint");
 
         //vel_sub
-        cmd_vel_sub_ = root_nh.subscribe<geometry_msgs::Twist>("/chassis/cmd_vel", 1, &ChassisController::cmdVelCallback, this);
+        cmd_vel_sub_ = root_nh.subscribe<geometry_msgs::Twist>("/cmd_vel", 1, &ChassisController::cmdVelCallback, this);
 
         //get_pid
         if (!flPid.init(ros::NodeHandle(controller_nh, "fl_pid_follow")))

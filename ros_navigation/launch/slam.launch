@@ -38,10 +38,8 @@
 
     <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
-    <node name="odom" pkg="ros_navigation" type="basic_odom" />
-    <node pkg="rviz" type="rviz" name="rviz" />
+    <!-- 运行odom -->
+    <include file="$(find auto_start)/launch/odom.launch" />
     <!-- 可以保存 rviz 配置并后期直接使用-->
-    <!--
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find my_nav_sum)/rviz/gmapping.rviz"/>
-    -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ros_navigation)/config/gmapping.rviz"/>
 </launch>
