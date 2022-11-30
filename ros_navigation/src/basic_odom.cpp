@@ -12,7 +12,7 @@ double joint_vel[4];
 double lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel;
 void JointStateCallback(const sensor_msgs::JointState::ConstPtr &joint_state){
     for(int i=0;i<=3;i++){
-        if(joint_state->velocity[i]<=0.5) joint_vel[i]=0.0;
+        if(joint_state->velocity[i]<=0.3) joint_vel[i]=0.0;
         joint_vel[i]=joint_state->velocity[i];
     }
     lf_joint_vel=joint_vel[2];
