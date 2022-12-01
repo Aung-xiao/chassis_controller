@@ -12,7 +12,7 @@ double joint_vel[4];
 double lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel;
 void JointStateCallback(const sensor_msgs::JointState::ConstPtr &joint_state){
     for(int i=0;i<=3;i++){
-        if(joint_state->velocity[i]<=0.2) joint_vel[i]=0.0;
+//        if(joint_state->velocity[i]<=0.2) joint_vel[i]=0.0;
         joint_vel[i]=joint_state->velocity[i];
     }
     lf_joint_vel=joint_vel[2];
@@ -34,15 +34,14 @@ int main(int argc, char** argv){
     double y = 0.0;
     double th = 0.0;
 
-    double vx = 0.0;
-    double vy = 0.0;
-    double vth = 0.0;
+    double vx,vy,vth;
+
 
     double wheel_radius=0.07625;
 
     ros::Time current_time, last_time;
 
-    ros::Rate r(1);
+    ros::Rate r(2);
     while(n.ok()){
 
         ros::spinOnce();               // check for incoming messages
@@ -56,9 +55,13 @@ int main(int argc, char** argv){
         double delta_y = vy;
         double delta_th = vth;
 
-        x += delta_x;
-        y += delta_y;
-        th += delta_th;
+        if(delta_x<=0.05) delta_x=0;
+        if(delta_y<=0.05) delta_y=0;
+        if(delta_th<=0.05) delta_th=0;
+
+        x += delta_x*(current_time.toSec()-last_time.toSec());
+        y += delta_y*(current_time.toSec()-last_time.toSec());
+        th += delta_th*(current_time.toSec()-last_time.toSec());
         ROS_INFO("x:%f,y:%f,th:%f",x,y,th);
         //since all odometry is 6DOF we'll need a quaternion created from yaw
         geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(th);
