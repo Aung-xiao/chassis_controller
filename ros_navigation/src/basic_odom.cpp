@@ -12,7 +12,7 @@ double joint_vel[4];
 double lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel;
 void JointStateCallback(const sensor_msgs::JointState::ConstPtr &joint_state){
     for(int i=0;i<=3;i++){
-        if(joint_state->velocity[i]<=0.3) joint_vel[i]=0.0;
+        if(joint_state->velocity[i]<=0.2) joint_vel[i]=0.0;
         joint_vel[i]=joint_state->velocity[i];
     }
     lf_joint_vel=joint_vel[2];
@@ -26,7 +26,7 @@ void JointStateCallback(const sensor_msgs::JointState::ConstPtr &joint_state){
 int main(int argc, char** argv){
     ros::init(argc, argv, "odometry_publisher");
     ros::NodeHandle n;
-    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("/odom", 50);
     ros::Subscriber joint_state_sub = n.subscribe<sensor_msgs::JointState>("/joint_states", 1, &JointStateCallback );
     tf::TransformBroadcaster odom_broadcaster;
 

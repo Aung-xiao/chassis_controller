@@ -1,3 +1,0 @@
-<launch>
-    <node name="odom" pkg="ros_navigation" type="basic_odom" />
-</launch>
