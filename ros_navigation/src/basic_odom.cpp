@@ -41,7 +41,7 @@ int main(int argc, char** argv){
 
     ros::Time current_time, last_time;
 
-    ros::Rate r(2);
+    ros::Rate r(10);
     while(n.ok()){
 
         ros::spinOnce();               // check for incoming messages
@@ -57,7 +57,7 @@ int main(int argc, char** argv){
 
         if(delta_x<=0.05) delta_x=0;
         if(delta_y<=0.05) delta_y=0;
-        if(delta_th<=0.05) delta_th=0;
+        if(delta_th<=0.1) delta_th=0;
 
         x += delta_x*(current_time.toSec()-last_time.toSec());
         y += delta_y*(current_time.toSec()-last_time.toSec());
