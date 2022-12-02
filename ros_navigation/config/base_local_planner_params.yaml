@@ -17,7 +17,7 @@ TrajectoryPlannerROS:
 
   # Goal Tolerance Parameters，目标公差
   xy_goal_tolerance: 0.30
-  yaw_goal_tolerance: 0.30
+  yaw_goal_tolerance: 0.50
   latch_xy_goal_tolerance: true #这是啥
   # Differential-drive robot configuration
   # 是否是全向移动机器人
