@@ -34,7 +34,7 @@ int main(int argc, char** argv){
     double y = 0.0;
     double th = 0.0;
 
-    double vx,vy,vth;
+    double vx,vy,vth,dt;
 
 
     double wheel_radius=0.07625;
@@ -49,20 +49,17 @@ int main(int argc, char** argv){
         vy = ((lb_joint_vel-lf_joint_vel)/2)*wheel_radius;
         vx = ((rf_joint_vel+lf_joint_vel)/2)*wheel_radius;
         vth = ((rf_joint_vel-lb_joint_vel)/((0.475+0.5)))*wheel_radius;
+        dt=current_time.toSec()-last_time.toSec();
         ROS_INFO("vx:%f,vy:%f,vth:%f",vx,vy,vth);
 
-        double delta_x = vx;
-        double delta_y = vy;
-        double delta_th = vth;
+        double delta_x = (vx * cos(th) - vy * sin(th)) *dt;
+        double delta_y = (vx * sin(th) + vy * cos(th)) *dt;
+        double delta_th = vth*dt;
 
-        if(delta_x<=0.05) delta_x=0;
-        if(delta_y<=0.05) delta_y=0;
-        if(delta_th<=0.1) delta_th=0;
+        x += delta_x;
+        y += delta_y;
+        th += delta_th;
 
-        x += delta_x*(current_time.toSec()-last_time.toSec());
-        y += delta_y*(current_time.toSec()-last_time.toSec());
-        th += delta_th*(current_time.toSec()-last_time.toSec());
-        ROS_INFO("x:%f,y:%f,th:%f",x,y,th);
         //since all odometry is 6DOF we'll need a quaternion created from yaw
         geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(th);
 
@@ -90,7 +87,6 @@ int main(int argc, char** argv){
         odom.pose.pose.position.y = y;
         odom.pose.pose.position.z = 0.0;
         odom.pose.pose.orientation = odom_quat;
-        ROS_INFO("odomx：%f,odomy:%f,odomth:%f",odom.pose.pose.position.x,odom.pose.pose.position.y,odom.pose.pose.position.z);
         //set the velocity
         odom.child_frame_id = "base_link";
         odom.twist.twist.linear.x = vx;
