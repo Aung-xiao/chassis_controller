@@ -1,15 +1,15 @@
 TrajectoryPlannerROS:
 
   # Robot Configuration Parameters
-  max_vel_x: 2.0 # X 方向最大速度
-  min_vel_x: 0.2 # X 方向最小速速
-  max_vel_y: 2.0 # y 方向最大速度
-  min_vel_y: 0.2 # y 方向最小速速
+  max_vel_x: 1.0 # X 方向最大速度
+  min_vel_x: 0.1 # X 方向最小速速
+  max_vel_y: 1.0 # y 方向最大速度
+  min_vel_y: 0.1 # y 方向最小速速
   max_vel_theta:  1.0 #
   min_vel_theta: -1.0
   max_in_place_vel_theta: 0.1
 
-  escape_vel: -2.0
+  escape_vel: -1.0
 
   acc_lim_x: 1.0 # X 加速限制
   acc_lim_y: 1.0 # Y 加速限制
@@ -23,7 +23,7 @@ TrajectoryPlannerROS:
   # 是否是全向移动机器人
   holonomic_robot: true
   #The following parameters are only used if holonomic_robot is set to true:
-  y_vels: [-2.0, -0.1, 0.1, 2.0] #这是个啥？？
+  y_vels: [-1.0, -0.1, 0.1, 1.0]
 
 
   # Forward Simulation Parameters，前进模拟参数
