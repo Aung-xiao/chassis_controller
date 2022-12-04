@@ -1,35 +1,39 @@
 TrajectoryPlannerROS:
 
   # Robot Configuration Parameters
-  max_vel_x: 2.0 # X 方向最大速度
-  min_vel_x: 0.1 # X 方向最小速速
-  max_vel_y: 2.0 # y 方向最大速度
-  min_vel_y: 0.1 # y 方向最小速速
-  max_vel_theta:  2.0 #
-  min_vel_theta: -2.0
-  max_in_place_vel_theta: 0.05
+  acc_lim_x: 2.0 # X 加速限制
+  acc_lim_y: 2.0 # Y 加速限制
+  acc_lim_theta: 1.0 # 角速度加速限制
 
-  escape_vel: -1.0
-
-  acc_lim_x: 1.0 # X 加速限制
-  acc_lim_y: 1.0 # Y 加速限制
-  acc_lim_theta: 0.6 # 角速度加速限制
+  max_vel_x: 3.0 # X 方向最大速度
+  min_vel_x: 0.8 # X 方向最小速速
+  max_vel_y: 3.0 # y 方向最大速度
+  min_vel_y: 0.8 # y 方向最小速速
+  max_vel_trans: 2.0 #平移速度
+  min_vel_trans: 0.8 #平移速度
+  max_rot_vel: 2.0 #旋转速度
+  min_rot_vel: 0.2 #旋转速度
 
   # Goal Tolerance Parameters，目标公差
-  xy_goal_tolerance: 0.30
-  yaw_goal_tolerance: 0.50
-  latch_xy_goal_tolerance: true #这是啥
+  xy_goal_tolerance: 0.10
+  yaw_goal_tolerance: 0.10
+  latch_xy_goal_tolerance: true #到达目标后允许旋转
+
   # Differential-drive robot configuration
   # 是否是全向移动机器人
   holonomic_robot: true
-  #The following parameters are only used if holonomic_robot is set to true:
-  y_vels: [-1.0, -0.1, 0.1, 1.0]
-
+  y_vels: [-3.0, -0.8, 0.8, 3.0]
 
   # Forward Simulation Parameters，前进模拟参数
-  sim_time: 1.0
-  vx_samples: 18
-  vy_samples: 18
+  sim_time: 2.0
+  vx_samples: 20
+  vy_samples: 20
   vtheta_samples: 20
   sim_granularity: 0.05
-  angular_sim_granularity: 0.05
+  controller_frequency: 30.0
+
+  #Trajectory Scoring Parameters
+  #这里跟成本函数有关，先不配置了
+
+  #Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.005 #重置抑制振荡前，机器人必须走多远
