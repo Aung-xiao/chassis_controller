@@ -30,8 +30,8 @@ int main(int argc, char** argv){
     ros::Subscriber joint_state_sub = n.subscribe<sensor_msgs::JointState>("/joint_states", 1, &JointStateCallback );
     tf::TransformBroadcaster odom_broadcaster;
 
-    double x = 0.0;
-    double y = 0.0;
+    double x = 3.0;
+    double y = 3.0;
     double th = 0.0;
 
     double vx,vy,vth,dt;

@@ -1,12 +1,31 @@
 <launch>
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find ros_navigation)/map/test_map.yaml"/>
+    <param name="local_costmap/width" value="10.0"/>
+    <param name="local_costmap/height" value="10.0"/>
+    <arg name="base_global_planner" default="navfn/NavfnROS"/>
+    <arg name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+
+        <param name="base_global_planner" value="$(arg base_global_planner)"/>
+        <param name="base_local_planner" value="$(arg base_local_planner)"/>
+        <param name="controller_frequency" value="5.0" />
         <rosparam file="$(find ros_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find ros_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
         <rosparam file="$(find ros_navigation)/config/local_costmap_params.yaml" command="load" />
         <rosparam file="$(find ros_navigation)/config/global_costmap_params.yaml" command="load" />
-<!--        <rosparam file="$(find ros_navigation)/config/base_local_planner_params.yaml" command="load" />-->
+        <!--        <rosparam file="$(find ros_navigation)/config/base_local_planner_params.yaml" command="load" />-->
         <rosparam file="$(find ros_navigation)/config/teb_local_planner_params.yaml" command="load" />
 
+
     </node>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="odom_tf_publisher"
+          args="0 0 0 0 0 0 1 map odom"/>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ros_navigation)/config/gmapping.rviz"/>
+
 
 </launch>

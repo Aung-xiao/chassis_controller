@@ -3,10 +3,12 @@
     <group if="$(arg robot)">
         <include file="$(find rm_description)/launch/hero.launch"/>
         <include file="$(find chassis_controller)/launch/load_controllers.launch"/>
+        <node pkg="ros_navigation" type="basic_odom" respawn="false" name="odom" />
     </group>
     <group unless="$(arg robot)">
         <include file="$(find rm_description)/launch/engineer.launch"/>
         <include file="$(find chassis_controller)/launch/load_steering_controllers.launch"/>
+        <node pkg="ros_navigatopn" type="basic_odom" respawn="false" name="odom" />
     </group>
     <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
 </launch>
