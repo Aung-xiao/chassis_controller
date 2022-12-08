@@ -38,7 +38,6 @@
 
     <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
-    <!-- 运行odom -->
-    <node name="odom" pkg="ros_navigation" type="basic_odom" />
+
 
 </launch>

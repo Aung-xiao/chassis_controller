@@ -1,8 +1,7 @@
 <robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
 
   <!-- 雷达 -->
-  <gazebo reference="laser">
-    <!-- 这里，把雷达映射到了laser这个link上 -->
+  <gazebo reference="sensor">
     <sensor type="ray" name="rplidar">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
@@ -29,7 +28,7 @@
       </ray>
       <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
         <topicName>/scan</topicName>
-        <frameName>laser</frameName>
+        <frameName>sensor</frameName>
       </plugin>
     </sensor>
   </gazebo>

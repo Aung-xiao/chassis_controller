@@ -1,4 +1,4 @@
-<robot name="laser" xmlns:xacro="http://wiki.ros.org/xacro">
+<robot name="sensor" xmlns:xacro="http://wiki.ros.org/xacro">
 
     <!-- 雷达支架 -->
     <xacro:property name="support_length" value="0.15" /> <!-- 支架长度 -->
@@ -50,7 +50,7 @@
     <xacro:property name="laser_m" value="0.1" /> <!-- 雷达质量 -->
 
     <!-- 雷达关节以及link -->
-    <link name="laser">
+    <link name="sensor">
         <visual>
             <geometry>
                 <cylinder radius="${laser_radius}" length="${laser_length}" />
@@ -69,10 +69,10 @@
 
     <joint name="laser2support" type="fixed">
         <parent link="support" />
-        <child link="laser" />
+        <child link="sensor" />
         <origin xyz="${laser_x} ${laser_y} ${laser_z}" />
     </joint>
-    <gazebo reference="laser">
+    <gazebo reference="sensor">
         <material>Gazebo/Black</material>
     </gazebo>
 </robot>
