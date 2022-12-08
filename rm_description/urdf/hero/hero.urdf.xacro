@@ -7,7 +7,7 @@
   <xacro:arg name="load_gazebo" default="true"/>
   <xacro:arg name="use_rm_gazebo" default="false"/>
   <xacro:arg name="roller_type" default="realistic"/>
-  <xacro:arg name="load_laser" default="true"/>
+  <xacro:arg name="load_laser" default="false"/>
 
   <xacro:if value="$(arg load_chassis)">
     <xacro:include filename="$(find rm_description)/urdf/hero/chassis.urdf.xacro"/>

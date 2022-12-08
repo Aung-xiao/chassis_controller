@@ -40,6 +40,5 @@
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
     <!-- 运行odom -->
     <node name="odom" pkg="ros_navigation" type="basic_odom" />
-    <!-- 可以保存 rviz 配置并后期直接使用-->
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ros_navigation)/config/gmapping.rviz"/>
+
 </launch>
