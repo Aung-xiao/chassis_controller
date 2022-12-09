@@ -40,17 +40,6 @@
     </xacro:unless>
   </xacro:if>
 
-  <xacro:include filename="$(find rm_description)/urdf/sensor/head.urdf.xacro" />
-  <xacro:include filename="$(find rm_description)/urdf/sensor/sensor.urdf.xacro" />
-
-  <xacro:if value="$(arg load_laser)">
-    <xacro:include filename="$(find rm_description)/urdf/sensor/laser_sim.urdf.xacro" />
-  </xacro:if>
-
-  <xacro:if value="$(arg load_camera)">
-    <xacro:include filename="$(find rm_description)/urdf/sensor/camera_sim.urdf.xacro" />
-  </xacro:if>
-
   <xacro:if value="$(arg realsense)">
     <xacro:include filename="$(find realsense_ros_gazebo)/xacro/tracker.xacro"/>
     <xacro:include filename="$(find realsense_ros_gazebo)/xacro/depthcam.xacro"/>
@@ -58,6 +47,22 @@
       <origin rpy="0 0 0 " xyz="0.18 0 0.3"/>
     </xacro:realsense_d435>
   </xacro:if>
+
+  <xacro:unless value="$(arg realsense)">
+    <xacro:include filename="$(find rm_description)/urdf/sensor/head.urdf.xacro" />
+    <xacro:include filename="$(find rm_description)/urdf/sensor/sensor.urdf.xacro" />
+
+    <xacro:if value="$(arg load_laser)">
+      <xacro:include filename="$(find rm_description)/urdf/sensor/laser_sim.urdf.xacro" />
+    </xacro:if>
+
+    <xacro:if value="$(arg load_camera)">
+      <xacro:include filename="$(find rm_description)/urdf/sensor/camera_sim.urdf.xacro" />
+    </xacro:if>
+  </xacro:unless>
+
+
+
 
 
 </robot>
