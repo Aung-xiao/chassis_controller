@@ -19,7 +19,7 @@ void JointStateCallback(const sensor_msgs::JointState::ConstPtr &joint_state){
     lb_joint_vel=joint_vel[0];
     rf_joint_vel=joint_vel[3];
     rb_joint_vel=joint_vel[1];
-    ROS_INFO("left_front：%f,left_back:%f,right_front:%f,right_back:%f",lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel);
+//    ROS_INFO("left_front：%f,left_back:%f,right_front:%f,right_back:%f",lf_joint_vel,lb_joint_vel,rf_joint_vel,rb_joint_vel);
 }
 
 
@@ -50,7 +50,7 @@ int main(int argc, char** argv){
         vx = ((rf_joint_vel+lf_joint_vel)/2)*wheel_radius;
         vth = ((rf_joint_vel-lb_joint_vel)/((0.475+0.5)))*wheel_radius;
         dt=current_time.toSec()-last_time.toSec();
-        ROS_INFO("vx:%f,vy:%f,vth:%f",vx,vy,vth);
+//        ROS_INFO("vx:%f,vy:%f,vth:%f",vx,vy,vth);
 
         double delta_x = (vx * cos(th) - vy * sin(th)) *dt;
         double delta_y = (vx * sin(th) + vy * cos(th)) *dt;

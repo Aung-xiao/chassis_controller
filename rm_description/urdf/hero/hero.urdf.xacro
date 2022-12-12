@@ -9,7 +9,8 @@
   <xacro:arg name="roller_type" default="realistic"/>
   <xacro:arg name="load_laser" default="false"/>
   <xacro:arg name="load_camera" default="false"/>
-  <xacro:arg name="realsense" default="true"/>
+  <xacro:arg name="realsense" default="false"/>
+
 
   <xacro:if value="$(arg load_chassis)">
     <xacro:include filename="$(find rm_description)/urdf/hero/chassis.urdf.xacro"/>
@@ -40,6 +41,10 @@
     </xacro:unless>
   </xacro:if>
 
+
+  <xacro:include filename="$(find rm_description)/urdf/sensor/head.urdf.xacro" />
+  <xacro:include filename="$(find rm_description)/urdf/sensor/sensor.urdf.xacro" />
+
   <xacro:if value="$(arg realsense)">
     <xacro:include filename="$(find realsense_ros_gazebo)/xacro/tracker.xacro"/>
     <xacro:include filename="$(find realsense_ros_gazebo)/xacro/depthcam.xacro"/>
@@ -49,9 +54,6 @@
   </xacro:if>
 
   <xacro:unless value="$(arg realsense)">
-    <xacro:include filename="$(find rm_description)/urdf/sensor/head.urdf.xacro" />
-    <xacro:include filename="$(find rm_description)/urdf/sensor/sensor.urdf.xacro" />
-
     <xacro:if value="$(arg load_laser)">
       <xacro:include filename="$(find rm_description)/urdf/sensor/laser_sim.urdf.xacro" />
     </xacro:if>
