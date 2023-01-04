@@ -9,7 +9,7 @@
   <xacro:arg name="roller_type" default="realistic"/>
   <xacro:arg name="load_laser" default="false"/>
   <xacro:arg name="load_camera" default="false"/>
-  <xacro:arg name="realsense" default="false"/>
+  <xacro:arg name="realsense" default="true"/>
 
 
   <xacro:if value="$(arg load_chassis)">

@@ -12,7 +12,7 @@ cost_scaling_factor: 3.0
 #地图类型
 map_type: costmap
 #导航包所需要的传感器
-observation_sources: real_camera
+observation_sources: sim_camera
 #对传感器的坐标系和数据进行配置。这个也会用于代价地图添加和清除障碍物。例如，你可以用激光雷达传感器用于在代价地图添加障碍物，再添加kinect用于导航和清除障碍物。
 scan: {sensor_frame: sensor, data_type: LaserScan, topic: scan, marking: true, clearing: true}
 sim_camera: {sensor_frame: d435_depth_frame, data_type: PointCloud2, topic: /d435/depth/color/points, marking: true, clearing: true}
