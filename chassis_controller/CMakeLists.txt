@@ -25,13 +25,16 @@ catkin_package(
 
 include_directories(
   include
+  state_machine
+  lib/smc/lib
   ${catkin_INCLUDE_DIRS}
 )
 
 add_library(chassis_controller
         include/chassis_controller/chassis_controller.h
         src/chassis_controller.cpp
-                )
+        include/chassis_controller/EasyStateMachine.h src/EasyStateMachine.cpp
+        )
 target_link_libraries(chassis_controller
         ${catkin_LIBRARIES}
         )

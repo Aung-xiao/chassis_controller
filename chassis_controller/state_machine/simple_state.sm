@@ -1,0 +1,46 @@
+%{
+//
+// a simple state machine,for learning and testing
+//
+%}
+
+%class EasyStateMachine
+%header chassis_controller/EasyStateMachine.h
+%fsmclass EasyStateMachine_sm
+%fsmfile EasyStateMachine_sm
+%start EasyStateMachineMap::Safe
+%map EasyStateMachineMap
+
+
+%%
+
+Safe
+    Entry
+    {
+        hp_reduce();
+        move_forward(); //前进同时扣血，顺便测试一下能不能两个函数同时跑;频率又怎么样
+    }
+{
+    processState [hp<=500]
+        Danger{}
+}
+
+
+Danger
+    Entry
+    {
+        hp_increase();
+        move_back(); //后退同时回血
+    }
+{
+    processState [hp>500]
+        Safe{}
+}
+
+
+Default
+{
+	processState
+		nil{}
+}
+%%

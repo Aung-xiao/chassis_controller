@@ -1,0 +1,36 @@
+digraph simple_state {
+
+    node
+        [shape=Mrecord width=1.5];
+
+    subgraph cluster_EasyStateMachineMap {
+
+        label="EasyStateMachineMap";
+
+        //
+        // States (Nodes)
+        //
+
+        "EasyStateMachineMap::Safe"
+            [label="{Safe|Entry/\l&nbsp;&nbsp;&nbsp;hp_reduce;\l&nbsp;&nbsp;&nbsp;move_forward;\l|processState/\l}"];
+
+        "EasyStateMachineMap::Danger"
+            [label="{Danger|Entry/\l&nbsp;&nbsp;&nbsp;hp_increase;\l&nbsp;&nbsp;&nbsp;move_back;\l|processState/\l}"];
+
+        "%start"
+            [label="" shape=circle style=filled fillcolor=black width=0.25];
+
+        //
+        // Transitions (Edges)
+        //
+
+        "EasyStateMachineMap::Safe" -> "EasyStateMachineMap::Danger"
+            [label="processState\l\[hp<=500\]/\l"];
+
+        "EasyStateMachineMap::Danger" -> "EasyStateMachineMap::Safe"
+            [label="processState\l\[hp>500\]/\l"];
+
+        "%start" -> "EasyStateMachineMap::Safe"
+    }
+
+}
