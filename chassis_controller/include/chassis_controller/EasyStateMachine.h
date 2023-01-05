@@ -12,16 +12,16 @@
 class EasyStateMachine
 {
 public:
-    EasyStateMachine(ros::NodeHandle& nh);
+    explicit EasyStateMachine(ros::NodeHandle& nh);
     void hp_reduce();
     void hp_increase();
     void move_forward();
     void move_back();
     void processState();
+    float hp;
 private:
     ros::Publisher vel_pub_;
     geometry_msgs::Twist chassis_vel_msgs_;
-    float hp;
     EasyStateMachine_sm context_;
 };
 #endif //SRC_EASYSTATEMACHINE_H

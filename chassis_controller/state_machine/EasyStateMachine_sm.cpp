@@ -51,8 +51,7 @@ void EasyStateMachineMap_Safe::Entry(EasyStateMachine_sm& context)
 
 void EasyStateMachineMap_Safe::processState(EasyStateMachine_sm& context)
 {
-
-    if (hp<=500)
+    if (context.getOwner().hp<=500)
     {
         context.getState().Exit(context);
         // No actions.
@@ -77,8 +76,7 @@ void EasyStateMachineMap_Danger::Entry(EasyStateMachine_sm& context)
 
 void EasyStateMachineMap_Danger::processState(EasyStateMachine_sm& context)
 {
-
-    if (hp>500)
+    if (context.getOwner().hp>500)
     {
         context.getState().Exit(context);
         // No actions.

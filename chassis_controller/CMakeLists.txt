@@ -50,6 +50,7 @@ target_link_libraries(steering_chassis_controller
 
 file(GLOB SOURCES
         src/run_smc.cpp
+        src/EasyStateMachine.cpp
         state_machine/*.cpp
         )
 
