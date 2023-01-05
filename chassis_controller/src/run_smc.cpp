@@ -6,13 +6,12 @@
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "bbq_fsm");
+    ros::init(argc, argv, "es_fsm");
     ros::NodeHandle nh("~");
     EasyStateMachine sm(nh);
 
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(10);
 
-    int count = 0;
     while (ros::ok())
     {
         ros::spinOnce();
