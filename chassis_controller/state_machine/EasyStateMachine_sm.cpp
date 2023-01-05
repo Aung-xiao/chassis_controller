@@ -17,8 +17,9 @@
 using namespace statemap;
 
 // Static class declarations.
-EasyStateMachineMap_Safe EasyStateMachineMap::Safe("EasyStateMachineMap::Safe", 0);
-EasyStateMachineMap_Danger EasyStateMachineMap::Danger("EasyStateMachineMap::Danger", 1);
+EasyStateMachineMap_gameStart EasyStateMachineMap::gameStart("EasyStateMachineMap::gameStart", 0);
+EasyStateMachineMap_Safe EasyStateMachineMap::Safe("EasyStateMachineMap::Safe", 1);
+EasyStateMachineMap_Danger EasyStateMachineMap::Danger("EasyStateMachineMap::Danger", 2);
 
 void EasyStateMachineState::processState(EasyStateMachine_sm& context)
 {
@@ -40,22 +41,67 @@ void EasyStateMachineMap_Default::processState(EasyStateMachine_sm& context)
 
 }
 
-void EasyStateMachineMap_Safe::Entry(EasyStateMachine_sm& context)
-
+void EasyStateMachineMap_gameStart::processState(EasyStateMachine_sm& context)
 {
     EasyStateMachine& ctxt = context.getOwner();
 
-    ctxt.hp_reduce();
-    ctxt.move_forward();
+    if (!context.getOwner().car_state())
+    {
+        context.getState().Exit(context);
+        context.clearState();
+        try
+        {
+            ctxt.move_forward();
+            context.setState(EasyStateMachineMap::Danger);
+        }
+        catch (...)
+        {
+            context.setState(EasyStateMachineMap::Danger);
+            throw;
+        }
+        context.getState().Entry(context);
+    }
+    else if (context.getOwner().car_state())
+
+    {
+        context.getState().Exit(context);
+        context.clearState();
+        try
+        {
+            ctxt.move_back();
+            context.setState(EasyStateMachineMap::Safe);
+        }
+        catch (...)
+        {
+            context.setState(EasyStateMachineMap::Safe);
+            throw;
+        }
+        context.getState().Entry(context);
+    }    else
+    {
+         EasyStateMachineMap_Default::processState(context);
+    }
+
 }
 
 void EasyStateMachineMap_Safe::processState(EasyStateMachine_sm& context)
 {
-    if (context.getOwner().hp<=500)
+    EasyStateMachine& ctxt = context.getOwner();
+
+    if (!context.getOwner().car_state())
     {
         context.getState().Exit(context);
-        // No actions.
-        context.setState(EasyStateMachineMap::Danger);
+        context.clearState();
+        try
+        {
+            ctxt.move_forward();
+            context.setState(EasyStateMachineMap::Danger);
+        }
+        catch (...)
+        {
+            context.setState(EasyStateMachineMap::Danger);
+            throw;
+        }
         context.getState().Entry(context);
     }
     else
@@ -65,22 +111,24 @@ void EasyStateMachineMap_Safe::processState(EasyStateMachine_sm& context)
 
 }
 
-void EasyStateMachineMap_Danger::Entry(EasyStateMachine_sm& context)
-
+void EasyStateMachineMap_Danger::processState(EasyStateMachine_sm& context)
 {
     EasyStateMachine& ctxt = context.getOwner();
 
-    ctxt.hp_increase();
-    ctxt.move_back();
-}
-
-void EasyStateMachineMap_Danger::processState(EasyStateMachine_sm& context)
-{
-    if (context.getOwner().hp>500)
+    if (context.getOwner().car_state())
     {
         context.getState().Exit(context);
-        // No actions.
-        context.setState(EasyStateMachineMap::Safe);
+        context.clearState();
+        try
+        {
+            ctxt.move_back();
+            context.setState(EasyStateMachineMap::Safe);
+        }
+        catch (...)
+        {
+            context.setState(EasyStateMachineMap::Safe);
+            throw;
+        }
         context.getState().Entry(context);
     }
     else

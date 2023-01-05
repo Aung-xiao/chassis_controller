@@ -8,33 +8,38 @@
 %header chassis_controller/EasyStateMachine.h
 %fsmclass EasyStateMachine_sm
 %fsmfile EasyStateMachine_sm
-%start EasyStateMachineMap::Safe
+%start EasyStateMachineMap::gameStart
 %map EasyStateMachineMap
 
 
 %%
+gameStart
+{
+    processState [!context.getOwner().car_state()]
+        Danger{
+        move_forward(); //前进同时扣血，顺便测试一下能不能两个函数同时跑;频率又怎么样
+        }
+    processState [context.getOwner().car_state()]
+        Safe{
+        move_back(); //后退同时回血
+        }
+}
 
 Safe
-    Entry
-    {
-        hp_reduce();
-        move_forward(); //前进同时扣血，顺便测试一下能不能两个函数同时跑;频率又怎么样
-    }
 {
-    processState [hp<=500]
-        Danger{}
+    processState [!context.getOwner().car_state()]
+        Danger{
+        move_forward(); //前进同时扣血，顺便测试一下能不能两个函数同时跑;频率又怎么样
+        }
 }
 
 
 Danger
-    Entry
-    {
-        hp_increase();
-        move_back(); //后退同时回血
-    }
 {
-    processState [hp>500]
-        Safe{}
+    processState [context.getOwner().car_state()]
+        Safe{
+        move_back(); //后退同时回血
+        }
 }
 
 

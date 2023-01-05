@@ -13,13 +13,14 @@ class EasyStateMachine
 {
 public:
     explicit EasyStateMachine(ros::NodeHandle& nh);
-    void hp_reduce();
-    void hp_increase();
     void move_forward();
     void move_back();
     void processState();
+    bool car_state();
     float hp;
+
 private:
+
     ros::Publisher vel_pub_;
     geometry_msgs::Twist chassis_vel_msgs_;
     EasyStateMachine_sm context_;

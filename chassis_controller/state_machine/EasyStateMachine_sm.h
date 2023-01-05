@@ -15,6 +15,7 @@
 
 // Forward declarations.
 class EasyStateMachineMap;
+class EasyStateMachineMap_gameStart;
 class EasyStateMachineMap_Safe;
 class EasyStateMachineMap_Danger;
 class EasyStateMachineMap_Default;
@@ -45,6 +46,7 @@ class EasyStateMachineMap
 {
 public:
 
+    static EasyStateMachineMap_gameStart gameStart;
     static EasyStateMachineMap_Safe Safe;
     static EasyStateMachineMap_Danger Danger;
 };
@@ -61,6 +63,17 @@ public:
     virtual void processState(EasyStateMachine_sm& context);
 };
 
+class EasyStateMachineMap_gameStart :
+    public EasyStateMachineMap_Default
+{
+public:
+    EasyStateMachineMap_gameStart(const char * const name, const int stateId)
+    : EasyStateMachineMap_Default(name, stateId)
+    {};
+
+    virtual void processState(EasyStateMachine_sm& context);
+};
+
 class EasyStateMachineMap_Safe :
     public EasyStateMachineMap_Default
 {
@@ -69,7 +82,6 @@ public:
     : EasyStateMachineMap_Default(name, stateId)
     {};
 
-    virtual void Entry(EasyStateMachine_sm&);
     virtual void processState(EasyStateMachine_sm& context);
 };
 
@@ -81,7 +93,6 @@ public:
     : EasyStateMachineMap_Default(name, stateId)
     {};
 
-    virtual void Entry(EasyStateMachine_sm&);
     virtual void processState(EasyStateMachine_sm& context);
 };
 
@@ -91,7 +102,7 @@ class EasyStateMachine_sm :
 public:
 
     explicit EasyStateMachine_sm(EasyStateMachine& owner)
-    : FSMContext(EasyStateMachineMap::Safe),
+    : FSMContext(EasyStateMachineMap::gameStart),
       _owner(owner)
     {};
 
