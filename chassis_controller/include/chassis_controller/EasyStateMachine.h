@@ -21,7 +21,7 @@ public:
 private:
     ros::Publisher vel_pub_;
     geometry_msgs::Twist chassis_vel_msgs_;
-    float hp=1000.0;
+    float hp;
     EasyStateMachine_sm context_;
 };
 #endif //SRC_EASYSTATEMACHINE_H

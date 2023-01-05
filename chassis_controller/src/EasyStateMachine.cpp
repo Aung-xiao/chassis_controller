@@ -6,6 +6,7 @@
 EasyStateMachine::EasyStateMachine(ros::NodeHandle& nh) : context_(*this){
     vel_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel", 10);
     context_.enterStartState();
+    hp=1000;
 }
 
 void EasyStateMachine::processState(){

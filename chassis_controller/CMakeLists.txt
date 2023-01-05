@@ -47,3 +47,11 @@ add_library(steering_chassis_controller
 target_link_libraries(steering_chassis_controller
         ${catkin_LIBRARIES}
         )
+
+file(GLOB SOURCES
+        src/run_smc.cpp
+        state_machine/*.cpp
+        )
+
+add_executable(run_smc ${SOURCES})
+target_link_libraries(run_smc ${catkin_LIBRARIES})
