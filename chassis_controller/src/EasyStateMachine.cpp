@@ -3,7 +3,14 @@
 //
 
 #include <chassis_controller/EasyStateMachine.h>
+EasyStateMachine::EasyStateMachine(ros::NodeHandle& nh) : context_(*this){
+    vel_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel", 10);
+    context_.enterStartState();
+}
 
+void EasyStateMachine::processState(){
+    context_.processState();
+}
 void EasyStateMachine::hp_increase() {
     hp+=1;
     ROS_INFO("current hp:%f",hp);

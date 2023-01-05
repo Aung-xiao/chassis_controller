@@ -27,7 +27,10 @@ void EasyStateMachineState::processState(EasyStateMachine_sm& context)
 
 void EasyStateMachineState::Default(EasyStateMachine_sm& context)
 {
-    assert(false);
+    throw (
+        TransitionUndefinedException(
+            context.getState().getName(),
+            context.getTransition()));
 
 }
 

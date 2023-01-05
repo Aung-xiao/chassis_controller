@@ -34,7 +34,8 @@ add_library(chassis_controller
         include/chassis_controller/chassis_controller.h
         src/chassis_controller.cpp
         include/chassis_controller/EasyStateMachine.h src/EasyStateMachine.cpp
-        )
+        src/run_smc.cpp)
+
 target_link_libraries(chassis_controller
         ${catkin_LIBRARIES}
         )

@@ -9,7 +9,7 @@
 #define EASYSTATEMACHINE_SM_H
 
 
-#define SMC_NO_EXCEPTIONS
+#define SMC_USES_IOSTREAMS
 
 #include <statemap.h>
 
@@ -113,7 +113,10 @@ public:
 
     inline EasyStateMachineState& getState()
     {
-        assert(_state != NULL);
+        if (_state == NULL)
+        {
+            throw statemap::StateUndefinedException();
+        }
 
         return dynamic_cast<EasyStateMachineState&>(*_state);
     };
