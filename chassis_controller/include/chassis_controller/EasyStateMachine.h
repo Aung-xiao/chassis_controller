@@ -12,7 +12,7 @@
 class EasyStateMachine
 {
 public:
-    explicit EasyStateMachine(ros::NodeHandle& nh);
+    EasyStateMachine(ros::NodeHandle& nh);
     void move_forward();
     void move_back();
     void processState();

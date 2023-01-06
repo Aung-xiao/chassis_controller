@@ -31,7 +31,6 @@ include_directories(
 )
 
 add_library(chassis_controller
-        include/chassis_controller/chassis_controller.h
         src/chassis_controller.cpp
         )
 
@@ -40,7 +39,6 @@ target_link_libraries(chassis_controller
         )
 
 add_library(steering_chassis_controller
-        include/chassis_controller/steering_chassis_controller.h
         src/steering_chassis_controller.cpp
         )
 target_link_libraries(steering_chassis_controller
@@ -55,3 +53,5 @@ file(GLOB SOURCES
 
 add_executable(run_smc ${SOURCES})
 target_link_libraries(run_smc ${catkin_LIBRARIES})
+
+
