@@ -7,7 +7,7 @@
 
 #include "geometry_msgs/Twist.h"
 #include <ros/ros.h>
-#include "EasyStateMachine_sm.h"
+#include "EasyStateMachine_fsm.h"
 
 class EasyStateMachine
 {
@@ -18,11 +18,12 @@ public:
     void processState();
     bool car_state();
     float hp;
+    void car_echo();
 
 private:
 
     ros::Publisher vel_pub_;
     geometry_msgs::Twist chassis_vel_msgs_;
-    EasyStateMachine_sm context_;
+    EasyStateMachine_fsm context_;
 };
 #endif //SRC_EASYSTATEMACHINE_H

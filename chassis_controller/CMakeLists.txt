@@ -30,6 +30,15 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+set(SMC ${PROJECT_SOURCE_DIR}/lib/smc/bin/Smc.jar)
+set(SM_CLASS_NAME EasyStateMachine_fsm)
+set(SM_SOURCES ${PROJECT_SOURCE_DIR}/state_machine/simple_state.sm)
+
+add_custom_target(EasyStateMachine_generate_sm_file
+        COMMAND java -jar ${SMC} -c++ ${SM_SOURCES}
+        COMMENT "Generating State Machine file")
+
+
 add_library(chassis_controller
         src/chassis_controller.cpp
         )

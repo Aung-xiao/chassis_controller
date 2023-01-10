@@ -6,8 +6,8 @@
 
 %class EasyStateMachine
 %header chassis_controller/EasyStateMachine.h
-%fsmclass EasyStateMachine_sm
-%fsmfile EasyStateMachine_sm
+%fsmclass EasyStateMachine_fsm
+%fsmfile EasyStateMachine_fsm
 %start EasyStateMachineMap::gameStart
 %map EasyStateMachineMap
 
@@ -46,6 +46,6 @@ Danger
 Default
 {
 	processState
-		nil{}
+		nil{car_echo(); }
 }
 %%
