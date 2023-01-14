@@ -5,8 +5,8 @@
 // from file : simple_state.sm
 //
 
-#ifndef EASYSTATEMACHINE_SM_H
-#define EASYSTATEMACHINE_SM_H
+#ifndef EASYSTATEMACHINE_FSM_H
+#define EASYSTATEMACHINE_FSM_H
 
 
 #define SMC_USES_IOSTREAMS
@@ -20,7 +20,7 @@ class EasyStateMachineMap_Safe;
 class EasyStateMachineMap_Danger;
 class EasyStateMachineMap_Default;
 class EasyStateMachineState;
-class EasyStateMachine_sm;
+class EasyStateMachine_fsm;
 class EasyStateMachine;
 
 class EasyStateMachineState :
@@ -32,14 +32,14 @@ public:
     : statemap::State(name, stateId)
     {};
 
-    virtual void Entry(EasyStateMachine_sm&) {};
-    virtual void Exit(EasyStateMachine_sm&) {};
+    virtual void Entry(EasyStateMachine_fsm&) {};
+    virtual void Exit(EasyStateMachine_fsm&) {};
 
-    virtual void processState(EasyStateMachine_sm& context);
+    virtual void processState(EasyStateMachine_fsm& context);
 
 protected:
 
-    virtual void Default(EasyStateMachine_sm& context);
+    virtual void Default(EasyStateMachine_fsm& context);
 };
 
 class EasyStateMachineMap
@@ -60,7 +60,7 @@ public:
     : EasyStateMachineState(name, stateId)
     {};
 
-    virtual void processState(EasyStateMachine_sm& context);
+    virtual void processState(EasyStateMachine_fsm& context);
 };
 
 class EasyStateMachineMap_gameStart :
@@ -71,7 +71,7 @@ public:
     : EasyStateMachineMap_Default(name, stateId)
     {};
 
-    virtual void processState(EasyStateMachine_sm& context);
+    virtual void processState(EasyStateMachine_fsm& context);
 };
 
 class EasyStateMachineMap_Safe :
@@ -82,7 +82,7 @@ public:
     : EasyStateMachineMap_Default(name, stateId)
     {};
 
-    virtual void processState(EasyStateMachine_sm& context);
+    virtual void processState(EasyStateMachine_fsm& context);
 };
 
 class EasyStateMachineMap_Danger :
@@ -93,20 +93,20 @@ public:
     : EasyStateMachineMap_Default(name, stateId)
     {};
 
-    virtual void processState(EasyStateMachine_sm& context);
+    virtual void processState(EasyStateMachine_fsm& context);
 };
 
-class EasyStateMachine_sm :
+class EasyStateMachine_fsm :
     public statemap::FSMContext
 {
 public:
 
-    explicit EasyStateMachine_sm(EasyStateMachine& owner)
+    explicit EasyStateMachine_fsm(EasyStateMachine& owner)
     : FSMContext(EasyStateMachineMap::gameStart),
       _owner(owner)
     {};
 
-    EasyStateMachine_sm(EasyStateMachine& owner, const statemap::State& state)
+    EasyStateMachine_fsm(EasyStateMachine& owner, const statemap::State& state)
     : FSMContext(state),
       _owner(owner)
     {};
@@ -142,7 +142,7 @@ private:
 };
 
 
-#endif // EASYSTATEMACHINE_SM_H
+#endif // EASYSTATEMACHINE_FSM_H
 
 //
 // Local variables:

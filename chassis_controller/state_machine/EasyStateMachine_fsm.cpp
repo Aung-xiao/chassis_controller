@@ -12,7 +12,7 @@
 
 
 #include "chassis_controller/EasyStateMachine.h"
-#include "EasyStateMachine_sm.h"
+#include "/home/aung/chassis_controller_ws/src/chassis_controller/chassis_controller/state_machine/EasyStateMachine_fsm.h"
 
 using namespace statemap;
 
@@ -21,12 +21,12 @@ EasyStateMachineMap_gameStart EasyStateMachineMap::gameStart("EasyStateMachineMa
 EasyStateMachineMap_Safe EasyStateMachineMap::Safe("EasyStateMachineMap::Safe", 1);
 EasyStateMachineMap_Danger EasyStateMachineMap::Danger("EasyStateMachineMap::Danger", 2);
 
-void EasyStateMachineState::processState(EasyStateMachine_sm& context)
+void EasyStateMachineState::processState(EasyStateMachine_fsm& context)
 {
     Default(context);
 }
 
-void EasyStateMachineState::Default(EasyStateMachine_sm& context)
+void EasyStateMachineState::Default(EasyStateMachine_fsm& context)
 {
     throw (
         TransitionUndefinedException(
@@ -35,13 +35,27 @@ void EasyStateMachineState::Default(EasyStateMachine_sm& context)
 
 }
 
-void EasyStateMachineMap_Default::processState(EasyStateMachine_sm& context)
+void EasyStateMachineMap_Default::processState(EasyStateMachine_fsm& context)
 {
+    EasyStateMachine& ctxt = context.getOwner();
 
+    EasyStateMachineState& endState = context.getState();
+
+    context.clearState();
+    try
+    {
+        ctxt.car_echo();
+        context.setState(endState);
+    }
+    catch (...)
+    {
+        context.setState(endState);
+        throw;
+    }
 
 }
 
-void EasyStateMachineMap_gameStart::processState(EasyStateMachine_sm& context)
+void EasyStateMachineMap_gameStart::processState(EasyStateMachine_fsm& context)
 {
     EasyStateMachine& ctxt = context.getOwner();
 
@@ -84,7 +98,7 @@ void EasyStateMachineMap_gameStart::processState(EasyStateMachine_sm& context)
 
 }
 
-void EasyStateMachineMap_Safe::processState(EasyStateMachine_sm& context)
+void EasyStateMachineMap_Safe::processState(EasyStateMachine_fsm& context)
 {
     EasyStateMachine& ctxt = context.getOwner();
 
@@ -111,7 +125,7 @@ void EasyStateMachineMap_Safe::processState(EasyStateMachine_sm& context)
 
 }
 
-void EasyStateMachineMap_Danger::processState(EasyStateMachine_sm& context)
+void EasyStateMachineMap_Danger::processState(EasyStateMachine_fsm& context)
 {
     EasyStateMachine& ctxt = context.getOwner();
 
