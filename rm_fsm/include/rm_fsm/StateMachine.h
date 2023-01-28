@@ -2,17 +2,17 @@
 // Created by aung on 2023/1/4.
 //
 
-#ifndef SRC_EASYSTATEMACHINE_H
-#define SRC_EASYSTATEMACHINE_H
+#ifndef SRC_STATEMACHINE_H
+#define SRC_STATEMACHINE_H
 
 #include "geometry_msgs/Twist.h"
 #include <ros/ros.h>
-#include "EasyStateMachine_fsm.h"
+#include "StateMachine_sm.h"
 
-class EasyStateMachine
+class StateMachine
 {
 public:
-    EasyStateMachine(ros::NodeHandle& nh);
+    StateMachine(ros::NodeHandle& nh);
     void move_forward();
     void move_back();
     void processState();
@@ -24,6 +24,6 @@ private:
 
     ros::Publisher vel_pub_;
     geometry_msgs::Twist chassis_vel_msgs_;
-    EasyStateMachine_fsm context_;
+    StateMachine_sm context_;
 };
-#endif //SRC_EASYSTATEMACHINE_H
+#endif //SRC_STATEMACHINE_H

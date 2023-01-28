@@ -1,0 +1,5 @@
+<launch>
+    <node name="bbq_solver" pkg="bbq_solver" type="bbq_solver_ros" output="screen">
+        <rosparam file="$(find bbq_solver)/config/default.yaml" command="load"/>
+    </node>
+</launch>

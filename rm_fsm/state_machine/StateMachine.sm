@@ -4,12 +4,12 @@
 //
 %}
 
-%class EasyStateMachine
-%header chassis_controller/EasyStateMachine.h
-%fsmclass EasyStateMachine_fsm
-%fsmfile EasyStateMachine_fsm
-%start EasyStateMachineMap::gameStart
-%map EasyStateMachineMap
+%class StateMachine
+%header rm_fsm/StateMachine.h
+%fsmclass StateMachine_sm
+%fsmfile StateMachine_sm
+%start StateMachineMap::gameStart
+%map StateMachineMap
 
 
 %%

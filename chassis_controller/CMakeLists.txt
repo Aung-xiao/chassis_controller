@@ -25,18 +25,10 @@ catkin_package(
 
 include_directories(
   include
-  state_machine
-  lib/smc/lib
   ${catkin_INCLUDE_DIRS}
 )
 
-set(SMC ${PROJECT_SOURCE_DIR}/lib/smc/bin/Smc.jar)
-set(SM_CLASS_NAME EasyStateMachine_fsm)
-set(SM_SOURCES ${PROJECT_SOURCE_DIR}/state_machine/simple_state.sm)
 
-add_custom_target(EasyStateMachine_generate_sm_file
-        COMMAND java -jar ${SMC} -c++ ${SM_SOURCES}
-        COMMENT "Generating State Machine file")
 
 
 add_library(chassis_controller
@@ -54,13 +46,6 @@ target_link_libraries(steering_chassis_controller
         ${catkin_LIBRARIES}
         )
 
-file(GLOB SOURCES
-        src/run_smc.cpp
-        src/EasyStateMachine.cpp
-        state_machine/*.cpp
-        )
 
-add_executable(run_smc ${SOURCES})
-target_link_libraries(run_smc ${catkin_LIBRARIES})
 
 

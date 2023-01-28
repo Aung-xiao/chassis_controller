@@ -1,14 +1,14 @@
 //
 // Created by aung on 2023/1/5.
 //
-#include "chassis_controller/EasyStateMachine.h"
+#include "rm_fsm/StateMachine.h"
 #include <ros/ros.h>
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "es_fsm");
+    ros::init(argc, argv, "sm");
     ros::NodeHandle nh("~");
-    EasyStateMachine sm(nh);
+    StateMachine sm(nh);
 
     ros::Rate loop_rate(500);
 

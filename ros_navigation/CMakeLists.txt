@@ -10,6 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   tf
+  actionlib
+  move_base_msgs
 )
 find_package(PCL REQUIRED) 
 
@@ -26,8 +28,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(basic_odom src/basic_odom.cpp)
-target_link_libraries(basic_odom ${catkin_LIBRARIES})
+
 
 add_executable(pointcloud2_filter src/pointcloud2_filter.cpp)
 target_link_libraries(pointcloud2_filter

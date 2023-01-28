@@ -16,7 +16,7 @@
     <param name="pointcloud_min_z" value="0" />
 
     <!-- topic from where pointcloud2 messages are subscribed -->
-    <remap from="cloud_in" to="filtered_points" />
-      
+    <remap from="cloud_in" to="/d435/depth/color/points" />
+
   </node>
 </launch>
