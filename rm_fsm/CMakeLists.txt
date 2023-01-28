@@ -5,6 +5,9 @@ project(rm_fsm)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+        move_base_msgs
+        actionlib
+
 )
 
 catkin_package(
@@ -50,4 +53,5 @@ file(GLOB SOURCES
 add_executable(run_smc ${SOURCES})
 target_link_libraries(run_smc ${catkin_LIBRARIES})
 
-
+add_executable(set_point src/set_point.cpp)
+target_link_libraries(set_point ${catkin_LIBRARIES})
