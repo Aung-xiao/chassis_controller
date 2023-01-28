@@ -1,0 +1,61 @@
+%{
+//
+// for ridgeback patrol
+//
+%}
+
+%class Patrol
+%header rm_fsm/Patrol.h
+%fsmclass Patrol_sm
+%fsmfile Patrol_sm
+%start PatrolMap::gameStart
+%map PatrolMap
+
+
+%%
+gameStart
+{
+    processState [context.getOwner().getState()==1]
+        move2Point1{move2Point1();}
+    processState [context.getOwner().getState()==2]
+        move2Point2{move2Point2();}
+    processState [context.getOwner().getState()==3]
+        move2Point3{move2Point3();}
+    processState [context.getOwner().getState()==4]
+        move2Point4{move2Point4();}
+}
+move2Point1
+{
+    processState [context.getOwner().getState()==2]
+        move2Point2{
+        move2Point2();
+        }
+}
+move2Point2
+{
+    processState [context.getOwner().getState()==3]
+        move2Point3{
+        move2Point3();
+        }
+}
+move2Point3
+{
+    processState [context.getOwner().getState()==4]
+        move2Point4{
+        move2Point4();
+        }
+}
+move2Point4
+{
+    processState [context.getOwner().getState()==1]
+        move2Point1{
+        move2Point1();
+        }
+}
+
+Default
+{
+	processState
+		nil{}
+}
+%%

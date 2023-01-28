@@ -24,6 +24,7 @@ int main(int argc, char** argv){
     goal.target_pose.pose.position.x = 1.0;
     goal.target_pose.pose.orientation.w = 1.0;
 
+
     ROS_INFO("Sending goal");
     ac.sendGoal(goal);
 
